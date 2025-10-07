@@ -712,9 +712,21 @@ mysql:
     username: bn_ghost
     password: "root"
     existingSecret: ""
+  # MySQL image configuration to use bitnamilegacy images
+  image:
+    registry: docker.io
+    repository: bitnamilegacy/mysql
+    tag: 8.0.39-debian-12-r8
+    pullPolicy: IfNotPresent
+  # MySQL metrics exporter image configuration
+  metrics:
+    image:
+      registry: docker.io
+      repository: bitnamilegacy/mysqld-exporter
+      tag: 0.17.2-debian-12-r16
+      pullPolicy: IfNotPresent
   # Disable security image verification for MySQL
   global:
-    imageRegistry: "docker.io/bitnamilegacy"
     security:
       allowInsecureImages: true
   ## MySQL Primary configuration
