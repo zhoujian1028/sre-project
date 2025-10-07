@@ -18,11 +18,11 @@ global:
   ##
   imagePullSecrets: []
   defaultStorageClass: "gp2-csi"
-  ## Security parameters
-  ##
-  security:
-    ## @param global.security.allowInsecureImages Allows skipping image verification
-    allowInsecureImages: false
+## Security parameters
+##
+security:
+  ## @param global.security.allowInsecureImages Allows skipping image verification
+  allowInsecureImages: true
   ## Compatibility adaptations for Kubernetes platforms
   ##
   compatibility:
