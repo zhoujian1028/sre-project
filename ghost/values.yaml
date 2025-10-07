@@ -11,7 +11,7 @@
 ## @param global.defaultStorageClass Global default StorageClass for Persistent Volume(s)
 ##
 global:
-  imageRegistry: ""
+  imageRegistry: "docker.io/bitnamilegacy"
   ## E.g.
   ## imagePullSecrets:
   ##   - myRegistryKeySecretName
@@ -128,7 +128,7 @@ ghostEmail: user@example.com
 ghostBlogTitle: User's Blog
 ## @param ghostHost Ghost host to create application URLs
 ##
-ghostHost: ""
+ghostHost: "localhost"
 ## @param ghostPath URL sub path where to server the Ghost application
 ##
 ghostPath: /
