@@ -22,7 +22,7 @@ global:
   ##
   security:
     ## @param global.security.allowInsecureImages Allows skipping image verification
-    allowInsecureImages: true
+    allowInsecureImages: false
   ## Compatibility adaptations for Kubernetes platforms
   ##
   compatibility:
@@ -87,7 +87,7 @@ diagnosticMode:
 image:
   registry: docker.io
   repository: bitnamilegacy/ghost
-  tag: 6.0.5-debian-12-r0
+  tag: 5.116.1-debian-12-r0
   digest: ""
   ## Specify a imagePullPolicy
   ## ref: https://kubernetes.io/docs/concepts/containers/images/#pre-pulled-images
@@ -110,11 +110,11 @@ image:
 
 ## @param ghostUsername Ghost user name
 ##
-ghostUsername: user
+ghostUsername: gilbert
 ## @param ghostPassword Ghost user password
 ## Defaults to a random 10-character alphanumeric string if not set
 ##
-ghostPassword: "Password@123"
+ghostPassword: "Pssword@2025"
 ## @param existingSecret Name of existing secret containing Ghost credentials
 ## NOTE: Must contain key `ghost-password`
 ## NOTE: When it's set, the `ghostPassword` parameter is ignored
@@ -469,7 +469,7 @@ service:
   externalTrafficPolicy: Cluster
   ## @param service.annotations Additional custom annotations for Ghost service
   ##
-  annotations:
+  annotations: 
     service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
   ## @param service.extraPorts Extra port to expose on Ghost service
   ##
@@ -642,7 +642,7 @@ volumePermissions:
   image:
     registry: docker.io
     repository: bitnamilegacy/os-shell
-    tag: 12-debian-12-r51
+    tag: 12-debian-12-r42
     digest: ""
     pullPolicy: IfNotPresent
     ## Optionally specify an array of imagePullSecrets.
@@ -687,7 +687,7 @@ volumePermissions:
 ## ref: https://github.com/bitnami/charts/blob/main/bitnami/mysql/values.yaml
 ##
 mysql:
-  ## metrics
+  ###add enable metrics ()
   metrics:
     enabled: true
   ## @param mysql.enabled Deploy a MySQL server to satisfy the applications database requirements
@@ -712,23 +712,6 @@ mysql:
     username: bn_ghost
     password: "root"
     existingSecret: ""
-  # MySQL image configuration to use bitnamilegacy images
-  image:
-    registry: docker.io
-    repository: bitnamilegacy/mysql
-    tag: 8.0.39-debian-12-r8
-    pullPolicy: IfNotPresent
-  # MySQL metrics exporter image configuration
-  metrics:
-    image:
-      registry: docker.io
-      repository: bitnamilegacy/mysqld-exporter
-      tag: 0.17.2-debian-12-r16
-      pullPolicy: IfNotPresent
-  # Disable security image verification for MySQL
-  global:
-    security:
-      allowInsecureImages: true
   ## MySQL Primary configuration
   ##
   primary:
