@@ -18,11 +18,11 @@ global:
   ##
   imagePullSecrets: []
   defaultStorageClass: "gp2-csi"
-## Security parameters
-##
-security:
-  ## @param global.security.allowInsecureImages Allows skipping image verification
-  allowInsecureImages: true
+  ## Security parameters
+  ##
+  security:
+    ## @param global.security.allowInsecureImages Allows skipping image verification
+    allowInsecureImages: true
   ## Compatibility adaptations for Kubernetes platforms
   ##
   compatibility:
@@ -712,6 +712,16 @@ mysql:
     username: bn_ghost
     password: "root"
     existingSecret: ""
+  # MySQL image configuration to use bitnamilegacy images
+  image:
+    registry: docker.io
+    repository: bitnamilegacy/mysql
+    tag: 8.0.39-debian-12-r8
+    pullPolicy: IfNotPresent
+  # Disable security image verification for MySQL
+  global:
+    security:
+      allowInsecureImages: true
   ## MySQL Primary configuration
   ##
   primary:
