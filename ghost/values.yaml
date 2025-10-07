@@ -717,7 +717,7 @@ mysql:
   image:
     registry: docker.io
     repository: bitnamilegacy/mysql
-    tag: 8.0.36-debian-12-r8
+    tag: 9.0.1-debian-12-r8
     pullPolicy: IfNotPresent
   # MySQL metrics exporter image configuration
   metrics:
@@ -726,35 +726,35 @@ mysql:
       repository: bitnamilegacy/mysqld-exporter
       tag: 0.17.2-debian-12-r16
       pullPolicy: IfNotPresent
-
-  ##
+  # Configure MySQL probes for better startup handling
   primary:
+    ## Configure startup probe for MySQL
+    startupProbe:
+      enabled: true
+      initialDelaySeconds: 30
+      periodSeconds: 10
+      timeoutSeconds: 5
+      failureThreshold: 60  # Give MySQL up to 10 minutes to start
+    ## Configure liveness probe for MySQL
+    livenessProbe:
+      enabled: true
+      initialDelaySeconds: 60
+      periodSeconds: 10
+      timeoutSeconds: 5
+      failureThreshold: 6
+    ## Configure readiness probe for MySQL
+    readinessProbe:
+      enabled: true
+      initialDelaySeconds: 30
+      periodSeconds: 10
+      timeoutSeconds: 5
+      failureThreshold: 6
     ## MySQL Primary Persistence parameters
     ## ref: https://kubernetes.io/docs/concepts/storage/persistent-volumes/
     ## @param mysql.primary.persistence.enabled Enable persistence on MySQL using PVC(s)
     ## @param mysql.primary.persistence.storageClass Persistent Volume storage class
     ## @param mysql.primary.persistence.accessModes [array] Persistent Volume access modes
     ## @param mysql.primary.persistence.size Persistent Volume size
-    ##
-    persistence:
-      enabled: true
-      storageClass: ""
-      accessModes:
-        - ReadWriteOnce
-      size: 8Gi
-    ## MySQL primary container's resource requests and limits
-    ## ref: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
-    ## We usually recommend not to specify default resources and to leave this as a conscious
-    ## choice for the user. This also increases chances charts run on environments with little
-    ## resources, such as Minikube. If you do want to specify resources, uncomment the following
-    ## lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-    ## @param mysql.primary.resourcesPreset Set container resources according to one common preset (allowed values: none, nano, small, medium, large, xlarge, 2xlarge). This is ignored if primary.resources is set (primary.resources is recommended for production).
-    ## More information: https://github.com/bitnami/charts/blob/main/bitnami/common/templates/_resources.tpl#L15
-    ##
-    resourcesPreset: "small"
-    ## @param mysql.primary.resources Set container requests and limits for different resources like CPU or memory (essential for production workloads)
-    ## Example:
-    ## resources:
     ##   requests:
     ##     cpu: 2
     ##     memory: 512Mi
