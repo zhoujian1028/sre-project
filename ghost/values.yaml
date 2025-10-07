@@ -727,6 +727,7 @@ mysql:
       pullPolicy: IfNotPresent
   # Disable security image verification for MySQL
   global:
+    imageRegistry: ""
     security:
       allowInsecureImages: true
   ## MySQL Primary configuration
