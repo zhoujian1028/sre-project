@@ -717,7 +717,7 @@ mysql:
   image:
     registry: docker.io
     repository: bitnamilegacy/mysql
-    tag: 8.0.39-debian-12-r6
+    tag: 8.0.36-debian-12-r8
     pullPolicy: IfNotPresent
   # MySQL metrics exporter image configuration
   metrics:
