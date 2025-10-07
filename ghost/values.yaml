@@ -688,8 +688,6 @@ volumePermissions:
 ##
 mysql:
   ###add enable metrics ()
-  metrics:
-    enabled: true
   ## @param mysql.enabled Deploy a MySQL server to satisfy the applications database requirements
   ## To use an external database set this to false and configure the `externalDatabase.*` parameters
   ##
@@ -721,6 +719,7 @@ mysql:
     pullPolicy: IfNotPresent
   # MySQL metrics exporter image configuration
   metrics:
+    enabled: true  
     image:
       registry: docker.io
       repository: bitnamilegacy/mysqld-exporter
